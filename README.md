@@ -55,3 +55,31 @@ nlp-earnings-analyzer/
 │  ├─ MU_2025-06-25-Q3.txt
 │  └─ ...
 └─ README.md              # This file
+```
+
+Interpreting Results
+
+`target_excess_return`
+This is the main economic quantity.
+It tells you how the stock performed relative to the chosen benchmark over the post-call event window.
+Example: -0.016 ≈ −1.6 percentage points vs the benchmark.
+`label`
+This is a coarse, quantile-based view of reaction strength:
+* -1: among the worst reactions in the sample.
+* 0: in the middle.
+* 1: among the best.
+
+Classification report
+
+If classification is used, inspect:
+Which labels the model tends to get right or wrong.
+Whether it can distinguish extreme positive vs extreme negative reactions (1 vs −1).
+With small samples, the report mostly tells you whether the pipeline is wired correctly, not whether the model is economically useful.
+
+Regression metrics
+
+If regression is used:
+R² near 0 or negative: model is not better than naive baselines.
+R² positive and reasonably large: some predictive signal in the embeddings (only meaningful with larger samples).
+Sample predicted vs actual:
+Helps see whether the model systematically under- or over-predicts certain reactions.
